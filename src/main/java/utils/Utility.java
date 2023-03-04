@@ -3,6 +3,7 @@ package utils;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Date;
 
 import org.openqa.selenium.Alert;
@@ -15,6 +16,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.io.FileHandler;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import browserfactory.BrowserFactory;
 
 // in Utility class we are using custom wait method
 
@@ -171,6 +176,13 @@ public class Utility {
 
 //		Date date = new Date();
 //		return date.toString().replace(" ", "_").replace(":", "_");
+		
+	}
+	
+	public static void waitForVisibilityOfElement(By locator, int time) {
+		WebDriver driver =  BrowserFactory.getBrowserInstance();
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(time));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 		
 	}
 

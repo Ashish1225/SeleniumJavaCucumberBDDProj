@@ -33,6 +33,7 @@ public class BrowserFactory {
 		driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(20));
 		driver.get(applicationUrl);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.manage().deleteAllCookies();
 		return driver;
 	}
 
