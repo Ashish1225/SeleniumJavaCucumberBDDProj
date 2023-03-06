@@ -33,8 +33,9 @@ public class ExtentTestNGITestListener implements ITestListener{
 
 	@Override
 	public void onTestFailure(ITestResult result) {
+		String testName = result.getMethod().getMethodName();
 		WebDriver driver= BrowserFactory.getBrowserInstance();
-		String base64 = Utility.captureScreenShotInBase64(driver);
+		String base64 = Utility.captureScreenShotInBase64(driver,testName);
 		parentThread.get().fail("Test Failed" + result.getThrowable().getMessage(),MediaEntityBuilder.createScreenCaptureFromBase64String(base64).build());
 		
 	}

@@ -4,16 +4,15 @@
   <listeners>
     <listener class-name="listeneres.ExtentTestNGITestListener"/>
   </listeners>
-  <test thread-count="5" name="Test(failed)">
+  <test thread-count="5" name="Test of Add New Course(failed)">
     <classes>
-      <class name="testcases.LoginTest">
+      <class name="testcases.HomePageTest">
         <methods>
           <include name="tearDown"/>
           <include name="setUp"/>
-          <include name="loginToApplication" invocation-numbers="0"/>
-          <include name="loginWithAllCombination" invocation-numbers="0"/>
+          <include name="deleteAddedCourseAndVerifyTest"/>
         </methods>
-      </class> <!-- testcases.LoginTest -->
+      </class> <!-- testcases.HomePageTest -->
     </classes>
-  </test> <!-- Test(failed) -->
+  </test> <!-- Test of Add New Course(failed) -->
 </suite> <!-- Failed suite [Suite] -->

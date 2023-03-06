@@ -13,7 +13,7 @@ public class BaseClass {
 
 	public WebDriver driver;
 
-	@BeforeMethod
+	@BeforeClass
 	public void setUp() {
 
 		// Approach 1- Config - it does not work for cross browser approach
@@ -22,7 +22,7 @@ public class BaseClass {
 
 	}
 
-	@AfterMethod
+	@AfterClass
 	public void tearDown() {
 		driver.quit();
 	}

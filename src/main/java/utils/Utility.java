@@ -1,11 +1,15 @@
 package utils;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+
 import java.util.Date;
 
+import org.apache.commons.codec.binary.Base64;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -128,10 +132,28 @@ public class Utility {
 	
 	//-- capture screenShot as Base64
 	
-	public static String captureScreenShotInBase64(WebDriver driver) {
+	public static String captureScreenShotInBase64(WebDriver driver,String testName) {
 		TakesScreenshot tss = (TakesScreenshot)driver;
-		
 		String base64 = tss.getScreenshotAs(OutputType.BASE64);
+		
+		// for adding screen shot into folder
+		String destScreenFilePath = System.getProperty("user.dir")+"//screenshots//"+testName+"_"+getCustomDateFormat()+".png";
+		File destinationScreenshotfile = new File(destScreenFilePath);
+		FileOutputStream fos = null;
+		try {
+			fos = new FileOutputStream(destinationScreenshotfile);
+		} catch (FileNotFoundException e) {
+			
+			e.printStackTrace();
+		}
+		try {
+			fos.write(Base64.decodeBase64(base64));
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		
+		
 		return base64;
 		
 	}
